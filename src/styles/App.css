@@ -2,5 +2,6 @@
 
 body {
   background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
   font-family: 'Nunito Sans', sans-serif;
 }
