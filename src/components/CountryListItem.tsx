@@ -17,11 +17,15 @@ function CountryListItem(props: CountryListItemProps) {
       <Card.Img style={{ height: 150, width: 260, objectFit: 'cover' }} variant="top" src={props.flagUrl} />
       <Card.Body className='mx-2'>
         <Card.Title className='my-3' style={{ fontSize: 16, fontWeight: 800 }}>{props.name}</Card.Title>
-        <Card.Text className='d-flex flex-column mb-4 gap-1' style={{ fontSize: 14 }} >
+        <div className='d-flex flex-column gap-1 mb-4' style={{ fontSize: 14 }}>
           <div><Span>Population: </Span>{props.population.toLocaleString()}</div>
           <div><Span>Region: </Span>{props.region}</div>
-          <div><Card.Text><Span>Capital: </Span>{props.capital}</Card.Text></div>
-        </Card.Text>
+          <div>
+            <Span>Capital: </Span>{props.capital}
+          </div>
+        </div>
+
+
       </Card.Body>
     </Card>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export type TApiResponse = {
-  
+
 }
 
 export const useFetch = (callback: () => any) => {

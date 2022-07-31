@@ -1,10 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Dropdown } from 'react-bootstrap'
 
-function Filterbar() {
+const REGIONS = [
+  'All',
+  'Africa',
+  'Americas',
+  'Asia',
+  'Europe',
+  'Oceania'
+]
+
+type filterbarPropsType = {
+  setRegionFilter: (region: string) => void
+}
+
+function Filterbar({ setRegionFilter }: filterbarPropsType) {
+  const [region, setRegion] = useState('All')
+
   return (
-    <select className='border-0 rounded shadow-sm px-4' style={{ height: 50, outline: 'none' }}>
-      <option value="">Filter by Region</option>
-    </select>
+    <Dropdown className='mb-4'
+
+    >
+      <Dropdown.Toggle
+        className='shadow-sm px-4'
+        style={{ color: 'black', backgroundColor: 'hsl(0, 0%, 100%)', height: 50, border: 'none', fontSize: 14 }}
+        id="dropdown-basic">
+
+        {region === 'All' ? 'Filter by Region' : region}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu className='border-0 shadow-sm'>
+        {REGIONS.map((item: string) =>
+          <Dropdown.Item
+            key={item}
+            style={{ fontSize: 14 }}
+            onClick={() => {
+              setRegion(item)
+              setRegionFilter(item)
+            }}
+          >
+            {item}
+          </Dropdown.Item>
+        )
+        }
+
+
+      </Dropdown.Menu>
+    </Dropdown>
   )
 }
 
