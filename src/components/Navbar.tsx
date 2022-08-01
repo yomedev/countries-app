@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Container, Navbar as NavbarBs } from 'react-bootstrap'
 import { BsMoon } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 function Navbar() {
@@ -9,7 +10,9 @@ function Navbar() {
       style={{ backgroundColor: 'hsl(0, 0%, 100%)' }}
       className="shadow-sm mb-4">
       <Container>
-        <NavbarBs.Brand style={{ fontWeight: 800, fontSize: 18 }}>Where in the world?</NavbarBs.Brand>
+        <Link to={`/`} style={{ textDecoration: 'none', color: 'hsl(200, 15%, 8%)' }}>
+          <NavbarBs.Brand style={{ fontWeight: 800, fontSize: 18 }}>Where in the world?</NavbarBs.Brand>
+        </Link>
         <Button> <BsMoon size={14} /><span>Dark Mode</span></Button>
       </Container>
     </NavbarBs>

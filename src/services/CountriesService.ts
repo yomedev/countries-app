@@ -14,20 +14,23 @@ export const getCountriesMin = async () => {
     population: country.population,
     region: country.region,
     capital: country.capital,
-    borders: country.borders
   }));
 }
 
-export const getCountriesByFilter = async (filterBy: string, filterValue: string) => {
-  const response = await axios.get(`https://restcountries.com/v3.1/${filterBy}/${filterValue}`)
-  return response.data.map((country: any) => ({
+export const getCountryById = async (id: string | undefined) => {
+  const response = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${id}`)
+  const country = response.data[0];
+  return  {
     id: country.cca2,
     flagUrl: country.flags.svg,
     name: country.name.common,
     population: country.population,
     region: country.region,
     capital: country.capital,
-    borders: country.borders
-  }));
+    borders: country.borders,
+    nativeName: country.name.nativeName,
+    subregion: country.subregion,
+    
+  }
 }
 
