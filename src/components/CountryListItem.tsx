@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 type CountryListItemProps = {
@@ -12,8 +13,15 @@ type CountryListItemProps = {
 }
 
 function CountryListItem(props: CountryListItemProps) {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/country${props.id}`)
+  }
+
   return (
-    <Card className='shadow-sm border-0 mb-4' >
+    <Card onClick={handleClick} className='shadow-sm border-0 mb-4' >
       <Card.Img style={{ height: 150, width: 260, objectFit: 'cover' }} variant="top" src={props.flagUrl} />
       <Card.Body className='mx-2'>
         <Card.Title className='my-3' style={{ fontSize: 16, fontWeight: 800 }}>{props.name}</Card.Title>

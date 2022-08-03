@@ -48,9 +48,9 @@ function CountriesList() {
         {
           filteredAndSearchedCountries.map((item: any) =>
             <Col key={item.id} className="w-auto">
-              <Link to={`/country${item.id}`} style={{ textDecoration: 'none', color: 'hsl(200, 15%, 8%)' }}>
+              {/* <Link to={`/country${item.id}`} style={{ textDecoration: 'none', color: 'hsl(200, 15%, 8%)' }}> */}
                 <CountryListItem {...item} />
-              </Link>
+              {/* </Link> */}
 
             </Col>
           )
