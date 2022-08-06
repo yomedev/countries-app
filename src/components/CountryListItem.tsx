@@ -17,7 +17,7 @@ function CountryListItem(props: CountryListItemProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/country${props.id}`)
+    navigate(`/country/${props.id}`)
   }
 
   return (
@@ -25,13 +25,13 @@ function CountryListItem(props: CountryListItemProps) {
       <Card.Img style={{ height: 150, width: 260, objectFit: 'cover' }} variant="top" src={props.flagUrl} />
       <Card.Body className='mx-2'>
         <Card.Title className='my-3' style={{ fontSize: 16, fontWeight: 800 }}>{props.name}</Card.Title>
-        <div className='d-flex flex-column gap-1 mb-4' style={{ fontSize: 14 }}>
-          <div><Span>Population: </Span>{props.population.toLocaleString()}</div>
-          <div><Span>Region: </Span>{props.region}</div>
-          <div>
+        <ul className='d-flex flex-column gap-1 mb-4 p-0' style={{ fontSize: 14, listStyle: 'none' }}>
+          <li><Span>Population: </Span>{props.population.toLocaleString()}</li>
+          <li><Span>Region: </Span>{props.region}</li>
+          <li>
             <Span>Capital: </Span>{props.capital}
-          </div>
-        </div>
+          </li>
+        </ul>
 
 
       </Card.Body>

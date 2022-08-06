@@ -28,10 +28,10 @@ function NavButton({ url, title, icon }: navButtonPropsType) {
 export default NavButton
 
 const Button = styled.button`
-width: 95px;
 display: flex;
 justify-content: space-between;
 align-items: center;
+gap: 10px;
 font-size: 14px;
 padding: 4px 18px;
   border: none;

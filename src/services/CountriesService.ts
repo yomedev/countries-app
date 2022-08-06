@@ -17,24 +17,22 @@ export const getCountriesMin = async () => {
   }));
 }
 
-export const getCountryById = async (id: any[]) => {  
+export const getCountryById = async (id: any[]) => {
   const response = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${id?.join(',')}`)
-  const country = response.data;
-  return country;
-
-  // return  {
-  //   id: country.cca2,
-  //   flagUrl: country.flags.svg,
-  //   name: country.name.common,
-  //   population: country.population,
-  //   region: country.region,
-  //   capital: country.capital,
-  //   borders: country.borders,
-  //   nativeName: country.name.nativeName,
-  //   subregion: country.subregion,
-  //   tld: country.tld,
-  //   currencies: country.currencies,
-  //   languages: country.languages
-  // }
+  
+  return response.data.map((country: any) => ({
+    id: country.cca2,
+    flagUrl: country.flags.svg,
+    name: country.name.common,
+    nativeName: Object.values<{ official: string }>(country.name.nativeName)[0].official,
+    population: country.population,
+    region: country.region,
+    capital: country.capital,
+    borders: country.borders,
+    subregion: country.subregion,
+    tld: country.tld,
+    currencies: Object.values<{ name: string }>(country.currencies)[0].name,
+    languages: Object.values(country.languages)
+  }))
 }
 
