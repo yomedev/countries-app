@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import { useParams } from 'react-router-dom'
 import NavButton from '../components/NavButton'
+import { useFetch } from '../hooks/useFetch'
 import { getCountryById } from '../services/CountriesService'
 
 function CountryPage() {
@@ -10,19 +11,24 @@ function CountryPage() {
   const [countryInfo, setCountryInfo] = useState<any>()
   const [borderCountries, setBorderCountries] = useState([])
 
+  const getCountryInfo = async () => {
+    const countryData = await getCountryById([params.countryId?.toLowerCase()])
+    const country = countryData[0]
+
+    setCountryInfo(country)
+
+    if (country.borders) {
+      const borders = await getCountryById(country.borders.map((item: any) => item.toLowerCase()));
+      setBorderCountries(borders)
+    }
+  }
+
+  const [fetchContry, isCantryLoading, countryError] = useFetch(getCountryInfo);
+
+
+
   useEffect(() => {
-    (async function () {
-      const countryData = await getCountryById([params.countryId?.toLowerCase()])
-      const country = countryData[0]
-
-      setCountryInfo(country)
-
-      if (country.borders) {
-        const borders = await getCountryById(country.borders.map((item: any) => item.toLowerCase()));
-        setBorderCountries(borders)
-      }
-
-    })()
+    fetchContry();
   }, [params])
 
   return (
