@@ -1,9 +1,7 @@
-import React, { ReactComponentElement, ReactElement } from 'react'
-import { BsArrowLeftShort } from 'react-icons/bs'
-import { To, useNavigate, useParams } from 'react-router-dom'
-import styled from 'styled-components'
+import React, { ReactElement } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-interface navButtonPropsType  {
+interface navButtonPropsType {
   url: any,
   icon?: ReactElement,
   title: string
@@ -11,31 +9,14 @@ interface navButtonPropsType  {
 
 function NavButton({ url, title, icon }: navButtonPropsType) {
   const navigate = useNavigate();
-  
+
   const handleClick = () => {
     navigate(url)
   }
 
   return (
-    <>
-      <Button onClick={handleClick}>{icon} {title}</Button>
-    </>
-
-
+    <button type='button' className='btn-nav' onClick={handleClick}>{icon} {title}</button>
   )
 }
 
 export default NavButton
-
-const Button = styled.button`
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 10px;
-font-size: 14px;
-padding: 4px 18px;
-  border: none;
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-`

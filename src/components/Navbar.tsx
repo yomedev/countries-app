@@ -1,41 +1,27 @@
-import React from 'react'
-import { Card, Container, Navbar as NavbarBs } from 'react-bootstrap'
-import { BsMoon } from 'react-icons/bs'
+import React, { useContext } from 'react'
+import { Container, Navbar as NavbarBs } from 'react-bootstrap'
+import { BsMoon, BsMoonFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 function Navbar() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <NavbarBs
-      style={{ backgroundColor: 'hsl(0, 0%, 100%)' }}
-      className="shadow-sm mb-4">
+    <NavbarBs className="shadow-sm mb-4">
       <Container>
-        <Link to={`/`} style={{ textDecoration: 'none', color: 'hsl(200, 15%, 8%)' }}>
-          <NavbarBs.Brand style={{ fontWeight: 800, fontSize: 18 }}>Where in the world?</NavbarBs.Brand>
+        <Link to={`/`}>
+          <NavbarBs.Brand>Where in the world?</NavbarBs.Brand>
         </Link>
-        <Button> <BsMoon size={14} /><span>Dark Mode</span></Button>
+        <button type='button' className='btn-theme' onClick={() => toggleTheme()}>
+          {theme ? <BsMoonFill size={14} /> : <BsMoon size={14} />}
+          <span>Dark Mode</span>
+        </button>
       </Container>
     </NavbarBs>
   )
 }
 
 export default Navbar
-
-const Button = styled.button`
-  border: none;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  word-spacing: 1px;
-  gap: 5px;
-  padding: 10px;
-  border-radius: 8px;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 15px;
-  }
-`;
 
 
 

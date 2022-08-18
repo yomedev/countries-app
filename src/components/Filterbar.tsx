@@ -18,14 +18,9 @@ function Filterbar({ setRegionFilter }: filterbarPropsType) {
   const [region, setRegion] = useState('All')
 
   return (
-    <Dropdown className='mb-4'
-
-    >
+    <Dropdown className='mb-4'>
       <Dropdown.Toggle
-        className='shadow-sm px-4'
-        style={{ color: 'black', backgroundColor: 'hsl(0, 0%, 100%)', height: 50, border: 'none', fontSize: 14 }}
-        id="dropdown-basic">
-
+        className='shadow-sm px-4 border-0' id="dropdown-basic">
         {region === 'All' ? 'Filter by Region' : region}
       </Dropdown.Toggle>
 
@@ -43,8 +38,6 @@ function Filterbar({ setRegionFilter }: filterbarPropsType) {
           </Dropdown.Item>
         )
         }
-
-
       </Dropdown.Menu>
     </Dropdown>
   )
