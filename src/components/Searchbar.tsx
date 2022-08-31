@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
+import { CountriesContext } from '../contexts/CountriesContext';
 
-type searchbarPropsType = {
-  searchValue: string,
-  setSearchValue: (e: any) => void
-}
+function Searchbar() {
 
-function Searchbar({searchValue, setSearchValue}: searchbarPropsType) {
+  const {filter, setQuery} = useContext(CountriesContext);
 
   return (
-    <div className='shadow-sm mb-4 d-flex align-items-center rounded search-wrap' >
+    <div className='shadow-sm my-2 d-flex align-items-center rounded search-wrap' >
       <BsSearch size={20} className="mx-3" />
       <input
         placeholder='Search for a country...'
         className='rounded'
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        value={filter.query}
+        onChange={(e) => setQuery(e.target.value)}
       />
     </div>
   )

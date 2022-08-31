@@ -1,24 +1,11 @@
 import { Card } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { ICountryCard } from '../types/countryTypes';
 
-type CountryListItemProps = {
-  id: string
-  flagUrl: string
-  name: string
-  population: number
-  region: string,
-  capital: string
-}
-
-function CountryListItem(props: CountryListItemProps) {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/country/${props.id}`)
-  }
+const CountryListItem = (props: ICountryCard) => {
 
   return (
-    <Card onClick={handleClick} className='shadow-sm border-0 mb-4' >
+    <Link to={`/country/${props.id}`} className="card shadow-sm border-0 scaled">
       <Card.Img variant="top" src={props.flagUrl} />
       <Card.Body className='mx-2'>
         <Card.Title className='my-3'>
@@ -32,8 +19,8 @@ function CountryListItem(props: CountryListItemProps) {
           <li><span>Capital: </span>{props.capital}</li>
         </ul>
       </Card.Body>
-    </Card>
+    </Link>
   )
-}
+};
 
 export default CountryListItem

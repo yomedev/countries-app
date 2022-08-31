@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
-export const useObserver = (ref: React.MutableRefObject<HTMLDivElement | null>, canLoad: boolean, deps: React.DependencyList, callback: () => void) => {
+export const useObserver = (ref: React.MutableRefObject<HTMLDivElement | null>, canLoad: boolean, [isLoading, ...deps]: React.DependencyList, callback: () => void) => {
 
   const observer = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    if (deps[0]) return;
-    console.log('observer');
+    if (isLoading) return;
+    console.log(ref.current);
     
     if (observer.current) observer.current.disconnect();
 
@@ -15,10 +15,10 @@ export const useObserver = (ref: React.MutableRefObject<HTMLDivElement | null>, 
         callback();
       }
     }, {
-      threshold: 0.5
+      threshold: 0.9
     });
 
     if (ref.current) observer.current.observe(ref.current);
 
-  }, deps)
+  }, [isLoading, ...deps])
 } 

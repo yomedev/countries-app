@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-interface navButtonPropsType {
+interface INavButtonProps {
   url: any,
   icon?: ReactElement,
   title: string
 }
 
-function NavButton({ url, title, icon }: navButtonPropsType) {
+function NavButton({ url, title, icon }: INavButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ function NavButton({ url, title, icon }: navButtonPropsType) {
   }
 
   return (
-    <button type='button' className='btn-nav' onClick={handleClick}>{icon} {title}</button>
+    <button type='button' className='shadow-sm rounded btn-nav scaled' onClick={handleClick}>{icon} {title}</button>
   )
 }
 

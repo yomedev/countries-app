@@ -8,11 +8,11 @@ function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <NavbarBs className="shadow-sm mb-4">
-      <Container>
+      <Container fluid="sm">
         <Link to={`/`}>
           <NavbarBs.Brand>Where in the world?</NavbarBs.Brand>
         </Link>
-        <button type='button' className='btn-theme' onClick={() => toggleTheme()}>
+        <button type='button' className='theme-toggle scaled' onClick={() => toggleTheme()}>
           {theme ? <BsMoonFill size={14} /> : <BsMoon size={14} />}
           <span>Dark Mode</span>
         </button>

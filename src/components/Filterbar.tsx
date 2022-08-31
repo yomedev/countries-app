@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Dropdown } from 'react-bootstrap'
+import { CountriesContext } from '../contexts/CountriesContext'
+import CustomToggle from './CustomToggle'
 
 const REGIONS = [
   'All',
@@ -10,34 +12,22 @@ const REGIONS = [
   'Oceania'
 ]
 
-type filterbarPropsType = {
-  setRegionFilter: (region: string) => void
-}
+function Filterbar() {
 
-function Filterbar({ setRegionFilter }: filterbarPropsType) {
-  const [region, setRegion] = useState('All')
+  const { filter, setRegion } = useContext(CountriesContext);
 
   return (
-    <Dropdown className='mb-4'>
-      <Dropdown.Toggle
-        className='shadow-sm px-4 border-0' id="dropdown-basic">
-        {region === 'All' ? 'Filter by Region' : region}
+    <Dropdown className='my-2' >
+      <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
+        {filter.region === 'All' ? 'Filter by Region' : filter.region}
       </Dropdown.Toggle>
 
       <Dropdown.Menu className='border-0 shadow-sm'>
         {REGIONS.map((item: string) =>
-          <Dropdown.Item
-            key={item}
-            style={{ fontSize: 14 }}
-            onClick={() => {
-              setRegion(item)
-              setRegionFilter(item)
-            }}
-          >
+          <Dropdown.Item key={item} onClick={() => setRegion(item)}>
             {item}
           </Dropdown.Item>
-        )
-        }
+        )}
       </Dropdown.Menu>
     </Dropdown>
   )

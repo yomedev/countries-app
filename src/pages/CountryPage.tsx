@@ -6,26 +6,13 @@ import Loader from '../components/Loader'
 import NavButton from '../components/NavButton'
 import { useFetch } from '../hooks/useFetch'
 import { CountriesService } from '../services/CountriesService'
+import { ICountryPage } from '../types/countryTypes'
 
-interface ICountryState {
-  id: string,
-  flagUrl: string,
-  name: string,
-  nativeName: string,
-  population: number,
-  region: string,
-  capital: string[],
-  borders: string[],
-  subregion: string,
-  tld: string[],
-  currencies: string,
-  languages: string[]
-}
 
 function CountryPage() {
   const params = useParams()
-  const [countryInfo, setCountryInfo] = useState<ICountryState | null>(null)
-  const [borderCountries, setBorderCountries] = useState<ICountryState[]>([])
+  const [countryInfo, setCountryInfo] = useState<ICountryPage | null>(null)
+  const [borderCountries, setBorderCountries] = useState<ICountryPage[]>([])
 
   const [fetchContry, isCountryLoading, countryError] = useFetch(async () => {
     const countryData = await CountriesService.getCountriesById(params.countryId?.toLowerCase())
@@ -55,28 +42,28 @@ function CountryPage() {
           ?
           <Loader />
           :
-          <Row sm={1} lg={2} className="d-flex justify-content-between">
+          <Row className="d-flex justify-content-between">
 
-            <Col className='d-flex justify-content-center align-items-center '>
+            <Col sm={12} md={6} lg={6} xl={5} className='d-flex justify-content-center align-items-center h-50 mb-5'>
               <img src={countryInfo?.flagUrl} />
             </Col>
 
-            <Col className='h-100 d-flex flex-column py-4'>
+            <Col sm={12} md={5} lg={5} xl={6} className='h-100 d-flex flex-column'>
               <h4 className='mb-4'>{countryInfo?.name}</h4>
               <ul>
-                <Row sm={1} lg={2} className="d-flex mb-4">
-                  <Col>
-                    <li>Native Name: {countryInfo?.nativeName}</li>
-                    <li>Population: {countryInfo?.population.toLocaleString()}</li>
-                    <li>Region: {countryInfo?.region}</li>
-                    <li>Sub Region: {countryInfo?.subregion}</li>
-                    <li>Capital: {countryInfo?.capital.join(', ')}</li>
+                <Row className="d-flex justify-content-between">
+                  <Col sm={12} lg={12} xl={5} className="mb-5">
+                    <li><span>Native Name:</span> {countryInfo?.nativeName}</li>
+                    <li><span>Population:</span> {countryInfo?.population.toLocaleString()}</li>
+                    <li><span>Region:</span> {countryInfo?.region}</li>
+                    <li><span>Sub Region:</span> {countryInfo?.subregion}</li>
+                    <li><span>Capital:</span> {countryInfo?.capital.join(', ')}</li>
                   </Col>
 
-                  <Col>
-                    <li>Top Level Domain: {countryInfo?.tld.join(', ')}</li>
-                    <li>Currencies: {countryInfo?.currencies}</li>
-                    <li>Languages: {countryInfo?.languages.join(', ')}</li>
+                  <Col sm={12} lg={12} xl={5} className="mb-5">
+                    <li><span>Top Level Domain:</span> {countryInfo?.tld.join(', ')}</li>
+                    <li><span>Currencies:</span> {countryInfo?.currencies}</li>
+                    <li><span>Languages:</span> {countryInfo?.languages.join(', ')}</li>
                   </Col>
                 </Row>
 
@@ -85,7 +72,7 @@ function CountryPage() {
                   <li
                     className='d-flex align-items-center gap-2 flex-wrap'
                   >
-                    Border Countries: {borderCountries.map((country: any) =>
+                    <span>Border Countries:</span> {borderCountries.map((country: any) =>
                       <NavButton url={`/country/${country.id}`} title={country.name} key={country.id} />
                     )}
                   </li>
