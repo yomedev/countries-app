@@ -15,8 +15,8 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route path='/' element={<CountriesPage />} />
-            <Route path='country/:countryId' element={<CountryPage />} />
+            <Route path='/countries-app/' element={<CountriesPage />} />
+            <Route path='/countries-app/country/:countryId' element={<CountryPage />} />
           </Routes>
         </>
       </CountriesProvider>
