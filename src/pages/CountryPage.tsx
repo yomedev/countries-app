@@ -73,7 +73,7 @@ function CountryPage() {
                     className='d-flex align-items-center gap-2 flex-wrap'
                   >
                     <span>Border Countries:</span> {borderCountries.map((country: any) =>
-                      <NavButton url={`/country/${country.id}`} title={country.name} key={country.id} />
+                      <NavButton url={`/countries-app/country/${country.id}`} title={country.name} key={country.id} />
                     )}
                   </li>
                 }

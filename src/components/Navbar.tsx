@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <NavbarBs className="shadow-sm mb-4">
       <Container fluid="sm">
-        <Link to={`/`}>
+        <Link to={`/countries-app/`}>
           <NavbarBs.Brand>Where in the world?</NavbarBs.Brand>
         </Link>
         <button type='button' className='theme-toggle scaled' onClick={() => toggleTheme()}>

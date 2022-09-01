@@ -5,7 +5,7 @@ import { ICountryCard } from '../types/countryTypes';
 const CountryListItem = (props: ICountryCard) => {
 
   return (
-    <Link to={`/country/${props.id}`} className="card shadow-sm border-0 scaled">
+    <Link to={`/countries-app/country/${props.id}`} className="card shadow-sm border-0 scaled">
       <Card.Img variant="top" src={props.flagUrl} />
       <Card.Body className='mx-2'>
         <Card.Title className='my-3'>
